@@ -1,0 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Inconsolata:400,700);
+
+body * {
+  /*outline: 1px dotted pink;*/
+}
+
+body {
+  font-family: 'Inconsolata', sans-serif;
+  /*width: 600px;*/
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  align-self: center;
+  margin-bottom: 50px;
+}
+h1 {
+  margin-bottom: 5px;
+  border-bottom: 3px solid black;
+}
+
+main {
+  align-self: center;
+  font-size: 30px;
+}
