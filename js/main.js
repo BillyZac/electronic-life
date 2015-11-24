@@ -156,6 +156,24 @@ World.prototype.toString = function() {
   return output
 }
 
+World.prototype.toDOM = function() {
+  for (var y = 0; y < this.grid.height; y++) {
+    var row = document.createElement('p')
+    var rowContent = ''
+    for (var x = 0; x < this.grid.width; x++) {
+      var element = this.grid.get(new Vector(x, y))
+      if (charFromElement(element) == ' ') {
+        rowContent += '.'
+      } else {
+        rowContent += charFromElement(element)
+      }
+    }
+    $(row).text(rowContent)
+    $('main').append(row)
+  }
+}
+
+
 // The wall constructor
 function Wall() {}
 
@@ -273,7 +291,16 @@ var testView = new View(world, new Vector(4, 4))
 console.log(testView)
 console.log('========================')
 
-for (var i = 0; i < 5; i++) {
+// for (var i = 0; i < 5; i++) {
+//   world.turn()
+//   console.log(world.toString())
+//   $('main').text('')
+//   world.toDOM()
+// }
+
+world.toDOM()
+window.addEventListener('keydown', function() {
+  $('main').text('')
   world.turn()
-  console.log(world.toString())
-}
+  world.toDOM()
+})
