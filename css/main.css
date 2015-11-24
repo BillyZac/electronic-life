@@ -31,11 +31,27 @@ main {
 }
 
 .cell {
-  background-color: aqua;
   width: 30px;
   height: 30px;
 }
 
 .cell:hover {
+  background-color: tomato;
+}
+
+p {
+  margin: 30px;
+}
+
+.row {
+  margin: 0;
+}
+
+.critter {
+  background-color: aqua;
+  border-radius: 50%;
+}
+
+.wall {
   background-color: tomato;
 }

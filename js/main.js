@@ -159,16 +159,28 @@ World.prototype.toString = function() {
 World.prototype.toDOM = function() {
   for (var y = 0; y < this.grid.height; y++) {
     var row = document.createElement('p')
+    $(row).addClass('row')
     var rowContent = ''
     for (var x = 0; x < this.grid.width; x++) {
+      var cell = document.createElement('span')
+      $(cell).addClass('cell')
       var element = this.grid.get(new Vector(x, y))
       if (charFromElement(element) == ' ') {
-        rowContent += '.'
+        // rowContent += '.'
+        // $(cell).text(' ')
       } else {
-        rowContent += charFromElement(element)
+        // rowContent += charFromElement(element)
+        // $(cell).text(charFromElement(element))
       }
+      if (charFromElement(element) == '#') {
+        $(cell).toggleClass('wall')
+      }
+      if (charFromElement(element) == 'o') {
+        $(cell).toggleClass('critter')
+      }
+      $(row).append(cell)
     }
-    $(row).text(rowContent)
+    // $(row).text(rowContent)
     $('main').append(row)
   }
 }
