@@ -228,10 +228,10 @@ World.prototype.toCanvas = function() {
       // output += charFromElement(element)
       if (charFromElement(element) == 'o') {
         var square = new Square(x*20, y*20, 20, 'aqua')
-        square.draw()
+        square.drawRough()
       }
       if (charFromElement(element) == '#') {
-        var square = new Square(x*20, y*20, 20, 'tomato')
+        var square = new Square(x*20, y*20, 20, '#105B63')
         square.draw()
       }
     }
@@ -371,12 +371,16 @@ window.addEventListener('keydown', function() {
   world.toDOM()
 })
 
+var s = new Square (350, 300, 30, 'red')
+
 var world2 = new World(plan2,
                       {'#': Wall,
                        'o': BouncingCritter})
 world2.toCanvas()
-window.addEventListener('keydown', function() {
-  clearAll()
-  world2.turn()
-  world2.toCanvas()
+window.addEventListener('keydown', function(event) {
+  if (event.keyIdentifier === 'Up') {
+    clearAll()
+    world2.turn()
+    world2.toCanvas()
+  }
 })
