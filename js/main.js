@@ -13,6 +13,41 @@ var plan =
  '############################']
 
 
+
+
+
+
+var plan2 =
+['############################',
+ '#      #    #      o      ##',
+ '#                          #',
+ '#          #####           #',
+ '##         #   #    ##     #',
+ '###           ##     #     #',
+ '#           ###      #     #',
+ '#   ####                   #',
+ '#   ##       o             #',
+ '# o  #         o       ### #',
+ '#    #                     #',
+ '#      #    #      o      ##',
+ '#                          #',
+ '#          #####           #',
+ '##         #   #    ##     #',
+ '###           ##     #     #',
+ '#           ###      #     #',
+ '#   ####                   #',
+ '#   ##       o             #',
+ '# o  #         o       ### #',
+ '#    #                     #',
+ '#      #    #      o      ##',
+ '#           ###      #     #',
+ '#   ####                   #',
+ '#   ##       o             #',
+ '# o  #         o       ### #',
+ '#    #                     #',
+ '############################']
+
+
 // $('main').text('############################')
 
 function Vector(x, y) {
@@ -185,6 +220,25 @@ World.prototype.toDOM = function() {
   }
 }
 
+World.prototype.toCanvas = function() {
+  // var output = ''
+  for (var y = 0; y < this.grid.height; y++) {
+    for (var x = 0; x < this.grid.width; x++) {
+      var element = this.grid.get(new Vector(x, y))
+      // output += charFromElement(element)
+      if (charFromElement(element) == 'o') {
+        var square = new Square(x*20, y*20, 20, 'aqua')
+        square.draw()
+      }
+      if (charFromElement(element) == '#') {
+        var square = new Square(x*20, y*20, 20, 'tomato')
+        square.draw()
+      }
+    }
+    // output += '\n'
+  }
+  // return output
+}
 
 // The wall constructor
 function Wall() {}
@@ -315,4 +369,14 @@ window.addEventListener('keydown', function() {
   $('main').text('')
   world.turn()
   world.toDOM()
+})
+
+var world2 = new World(plan2,
+                      {'#': Wall,
+                       'o': BouncingCritter})
+world2.toCanvas()
+window.addEventListener('keydown', function() {
+  clearAll()
+  world2.turn()
+  world2.toCanvas()
 })
