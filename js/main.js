@@ -371,16 +371,21 @@ window.addEventListener('keydown', function() {
   world.toDOM()
 })
 
-var s = new Square (350, 300, 30, 'red')
-
 var world2 = new World(plan2,
                       {'#': Wall,
                        'o': BouncingCritter})
-world2.toCanvas()
-window.addEventListener('keydown', function(event) {
-  if (event.keyIdentifier === 'Up') {
-    clearAll()
-    world2.turn()
-    world2.toCanvas()
-  }
-})
+// world2.toCanvas()
+// window.addEventListener('keydown', function(event) {
+//   if (event.keyIdentifier === 'Up') {
+//     clearAll()
+//     world2.turn()
+//     world2.toCanvas()
+//   }
+// })
+
+
+setInterval(function(){
+  clearAll()
+  world2.turn()
+  world2.toCanvas()
+}, 100)
