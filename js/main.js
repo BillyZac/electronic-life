@@ -12,9 +12,60 @@ var plan =
  '#    #                     #',
  '############################']
 
+function makePlan(rows, columns) {
+  var output = []
+  for (var x = 1; x <= rows; x++) {
+    var row = []
+    for (var y = 1; y <= columns; y++) {
+      if (x === 1 || x === rows) {
+        row.push("#")
+      } else {
+          if (y === 1 || y === columns) {
+            row.push("#")
+          } else {
+              row.push('\u2003')
+            }
+        }
+      }
+    output.push(row)
+    }
+  return output
+}
 
+var gridTest = makePlan(20, 100)
+console.log(planToStrings(gridTest))
 
+function populatePlan(grid) {
+  var width = grid[0].length
+  var height = grid.length
+  for (var y = 1; y < height; y++) {
+    // Add walls
+    for (var x = 1; x < width; x++) {
+      if (Math.random() * 1000 > 980) {
+        grid[y][x] = '#'
+      }
+    }
+    // Add critters
+    for (var x = 1; x < width; x++) {
+      if (Math.random() * 1000 > 995) {
+        grid[y][x] = 'o'
+      }
+    }
+  }
+}
+populatePlan(gridTest)
+console.log(planToStrings(gridTest))
 
+// Produce an array of strings from 2d grid array
+function planToStrings(grid) {
+  var output =[]
+  var height = grid.length
+  for (var y = 0; y < height; y++) {
+    var row = grid[y].join('')
+    output.push(row)
+  }
+  return output
+}
 
 
 var plan2 =
