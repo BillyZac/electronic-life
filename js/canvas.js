@@ -1,7 +1,7 @@
 // Get a reference to the canvas for drawing
 var canvas = document.querySelector('#canvas').getContext("2d")
-var canvasWidth = 600
-var canvasHeight = 600
+var canvasWidth = 1200
+var canvasHeight = 750
 var background = '#FFF'
 var critterColor1 = '#222'
 var critterColor2 = '#333'

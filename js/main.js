@@ -23,7 +23,7 @@ function makePlan(rows, columns) {
           if (y === 1 || y === columns) {
             row.push("#")
           } else {
-              row.push('\u2003')
+              row.push(' ')
             }
         }
       }
@@ -32,13 +32,14 @@ function makePlan(rows, columns) {
   return output
 }
 
-var gridTest = makePlan(20, 100)
-console.log(planToStrings(gridTest))
-
+// A plan size of (35, 60) works nicely for a 1200 x 750 canvas
+var planTest = makePlan(35, 60)
+// console.log(planToStrings(planTest))
+console.log(plan)
 function populatePlan(grid) {
   var width = grid[0].length
   var height = grid.length
-  for (var y = 1; y < height; y++) {
+  for (var y = 1; y < height-1; y++) {
     // Add walls
     for (var x = 1; x < width; x++) {
       if (Math.random() * 1000 > 980) {
@@ -46,15 +47,15 @@ function populatePlan(grid) {
       }
     }
     // Add critters
-    for (var x = 1; x < width; x++) {
+    for (var x = 1; x < width-1; x++) {
       if (Math.random() * 1000 > 995) {
         grid[y][x] = 'o'
       }
     }
   }
 }
-populatePlan(gridTest)
-console.log(planToStrings(gridTest))
+populatePlan(planTest)
+console.log(planToStrings(planTest))
 
 // Produce an array of strings from 2d grid array
 function planToStrings(grid) {
@@ -415,14 +416,14 @@ console.log('========================')
 //   world.toDOM()
 // }
 
-world.toDOM()
-window.addEventListener('keydown', function() {
-  $('main').text('')
-  world.turn()
-  world.toDOM()
-})
+// world.toDOM()
+// window.addEventListener('keydown', function() {
+//   $('main').text('')
+//   world.turn()
+//   world.toDOM()
+// })
 
-var world2 = new World(plan2,
+var world2 = new World(planToStrings(planTest),
                       {'#': Wall,
                        'o': BouncingCritter})
 // world2.toCanvas()
@@ -433,6 +434,7 @@ var world2 = new World(plan2,
 //     world2.toCanvas()
 //   }
 // })
+
 
 
 setInterval(function(){
